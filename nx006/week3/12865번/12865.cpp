@@ -54,12 +54,12 @@ public:
         }
     }
 
-    void calculateMaxValue()
+    inline void calculateMaxValue()
     {
         knapsack_dp();
     }
 
-    auto getMaxValue()
+    inline auto getMaxValue()
     {
         return dp.back().back();
     }
