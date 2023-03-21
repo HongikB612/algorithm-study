@@ -59,7 +59,7 @@ public:
         knapsack_dp();
     }
 
-    inline auto getMaxValue()
+    inline auto getMaxValue() const
     {
         return dp.back().back();
     }
@@ -68,8 +68,8 @@ private:
     std::vector<std::vector<int>> dp;
     std::vector<Item> items;
 
-    int maxWeight;
-    std::size_t numberOfItems;
+    const int maxWeight;
+    const std::size_t numberOfItems;
 
     void knapsack_dp()
     {
@@ -96,8 +96,9 @@ private:
 
 int main()
 {
-    std::cin.tie(nullptr)->sync_with_stdio(false);
-    std::cout.tie(nullptr)->sync_with_stdio(false);
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+    std::cout.tie(nullptr);
 
     int numberOfItems = 0;
     int maximumWeight = 0;
