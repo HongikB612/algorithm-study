@@ -65,6 +65,7 @@ private:
         // for case of bad access
         if (weightIndex - items[itemIndex].getWeight() < 0) {
           dp[itemIndex][weightIndex] = dp[itemIndex - 1][weightIndex];
+          continue;
         }
         dp[itemIndex][weightIndex] = std::max(
             dp[itemIndex - 1][weightIndex], // NS(n-1, w) + 0
