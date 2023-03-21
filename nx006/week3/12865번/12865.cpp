@@ -23,15 +23,14 @@ public:
 
     items.reserve(numberOfItems);
   }
-  ~DPManager() = default;
 
   auto inputItems() {
-    items.emplace_back(Item{0, 0}); // index 0 -> empty item
+    items.emplace_back(0, 0); // index 0 -> empty item
     for (std::size_t i = 0; i < numberOfItems; i++) {
       int weight = 0;
       int value = 0;
       std::cin >> weight >> value;
-      items.emplace_back(Item{value, weight});
+      items.emplace_back(value, weight);
     }
   }
 
@@ -62,10 +61,15 @@ private:
     // itemIndex stands for column index
     for (int itemIndex = 1; itemIndex < items.size(); itemIndex++) {
       // weightIndex stands for row index
-      for (int weightIndex = items[itemIndex].getWeight(); weightIndex < maxWeight + 1; weightIndex++) {
+      for (int weightIndex = 1; weightIndex < maxWeight + 1; weightIndex++) {
+        // for case of bad access
+        if (weightIndex - items[itemIndex].getWeight() < 0) {
+          dp[itemIndex][weightIndex] = dp[itemIndex - 1][weightIndex];
+        }
         dp[itemIndex][weightIndex] = std::max(
             dp[itemIndex - 1][weightIndex], // NS(n-1, w) + 0
-            dp[itemIndex - 1][weightIndex - items[itemIndex].getWeight()] + items[itemIndex].getValue()
+            dp[itemIndex - 1][weightIndex - items[itemIndex].getWeight()]
+                + items[itemIndex].getValue() // NS(n-1, w - w[n]) + v[n]
         );
       }
     }
@@ -83,6 +87,7 @@ int main()
   DPManager kn(numberOfItems, maximumWeight);
   kn.inputItems();
   kn.calculateMaxValue();
+
   std::cout << kn.getMaxValue() << std::endl;
 
   return 0;
