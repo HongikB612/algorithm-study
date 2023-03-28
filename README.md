@@ -1,6 +1,16 @@
 # B612 Algorithm Study
 B612 1학기 알고리즘 스터디 레포입니다.
 
+# Notice
+
+스터디 참여 방식, 그리고 깃허브 사용법에 대한 가이드입니다. 꼭 읽어주세요.
+
+**만약 가이드에서 수정 사항, 개선점, 혹은 추가할 내용이 있다면, 직접 추가해서 PR을 날려주세요. 유의미한 개선일 경우 공헌을 인정하여 유형의 보상을 드리겠습니다.**
+가이드 수정 시 PR 메시지:
+```
+Update: README.md
+```
+
 ## repository structure
 ---
 ```
@@ -63,6 +73,13 @@ algorithmStudy
   origin  https://github.com/nx006/algorithm-study.git (push)
   ```
   - `git remote add upstream https://github.com/HongikB612/algorithm-study.git`를 입력하여 원격 저장소에 원본 저장소를 추가한다
+  - 그러면 다음과 같이 된다.
+  ```
+  origin  https://github.com/nx006/algorithm-study.git (fetch)
+  origin  https://github.com/nx006/algorithm-study.git (push)
+  upstream https://github.com/HongikB612/algorithm-study.git (fetch)
+  upstream https://github.com/HongikB612/algorithm-study.git (push)
+  ```
   - 참고로 origin과 upstream은 변수명임. 여기에 원격 레포지토리 주소를 변수로써 저장한다는 뜻임
 4. 매번 새로 들어올 때마다, `git fetch upstream`을 통해 원본 저장소와 내 포크한 레포를 동기화시켜주는 것이 좋다.
   - `fetch`는 이후에 `merge` 과정을 거쳐야 하는데, fetch+merge를 합친 명령어로 `pull`이 있다.
@@ -79,13 +96,20 @@ algorithmStudy
 7. `git push origin`으로 원격 레포지토리에 푸시한다.
   - 참고로 이때 origin 뒤에 브랜치 이름을 붙인다면 해당 브랜치로 푸시된다
   - 예를 들어 `git push origin nx006`라 하면 nx006라는 브랜치로 푸시됨
-  - **upstream**으로 푸시하지 않는다.
+  - **upstream**으로 푸시하지 않는다. (권한 막혀있음)
 8. 이후에 github.com으로 가서, 변경사항을 확인한 후 `Create Pull Request`를 눌러 `pull request`를 생성해준다
 9. merge conflict가 나는지 확인한 후에, submit 브랜치에 PR을 생성한다
 10. 카카오톡/디스코드에 PR 올렸다고 말한다.
 
+- 저 명령어들은 터미널에서 입력하면 됩니다. (iterm, git bash, cmd, powershell 등등)
+- vscode, visual studio, clion, intellij, pycharm 등등 다양한 ide에서도 git을 사용할 수 있습니다. 이때는 ide에서 제공하는 기능을 사용하면 됩니다. 개인적으로 이 방법을 추천합니다.
+- 혹은 위 ide나 에디터들에서도 terminal을 사용할 수 있습니다. 이때는 위 명령어들을 그대로 사용하면 됩니다.
+- 다시 한 번 말하지만, 꼭 **`pull` 하는 거 잊지 마세요!**
+
 ### PR 이후
-매주 화요일마다 제(nx006)가 PR을 모두 체크한 뒤에, main으로 머지할 것입니다. 만약 수정사항이 있으면 PR을 거절하고, 다시 PR을 보내달라고 요청할 것입니다. 이때 목요일까지 다시 수정해서 올려주시면 됩니다.
+매주 화요일 22:00에 제(nx006)가 PR을 모두 체크한 뒤에, main으로 머지할 것입니다. 만약 수정사항이 있으면 PR을 거절하고, 다시 PR을 보내달라고 요청할 것입니다. 이때 목요일까지 다시 수정해서 올려주시면 됩니다.
+
+다시 한 번 말하지만, PR 후에는 저한테 PR 보냈다고 말해주세요. 제가 확인을 못하면 머지를 못할 수도 있습니다.
 
 ## 커밋 규칙
 커밋 메시지는 일관되게 작성해주세요. 여기서는 딱히 커밋 규칙에 대한 강제사항을 두지는 않겠으나, 다음 규칙을 적용하면 보기 편합니다.
@@ -106,9 +130,15 @@ algorithmStudy
 
 알골 스터디에서는 특별 규칙을 적용합니다.
 
-- 새로운 문제에 대해서 첫 커밋 시 `Submit (문제 번호) (문제 이름) on (주차)` 로 커밋한다
-  - 예: `Submit 1000번 A+B on week1`
-- PR의 제목도 마찬가지로 똑같이 `Submit (문제 번호) (문제 이름) on (주차)` 로 작성한다
+- PR의 제목은 `Submit (문제 번호) (문제 이름) on (주차)` 로 작성한다.
+
+예시
+```
+Submit 1003 on 1st week
+```
+
+> 첫 번째 Commit 메시지에 Submit 규칙은 제거합니다. PR 제목으로 대체합니다.
+> 다만 마지막 Commit 메시지의 경우 Submit 메시지를 남겨주면 좋습니다.
 
 ### 커밋 유형 양식
 - Feat : 새로운 기능의 추가
@@ -154,3 +184,26 @@ Submit 1000번 A+B on week1
 
 참고로 커밋 메시지 규칙같은 건 팀마다 다릅니다. 어디서는 `DOCS Update readme` 이런 식으로 쓰기도 하고, `:` 이거를 붙이기도 하고, 안 붙이기도 합니다.
 알골 스터디에서는 거기까지 제한을 두지 않되, 본인에게 맞추어서 일관되게 작성해주시면 됩니다.
+
+## 브랜치 규칙
+upstream의 경우 submit 브랜치로만 PR합니다.
+
+fork된 origin의 경우 자유롭게 브랜치를 만들어서 작업하면 됩니다.
+
+## 출석
+
+출석 확인은 [노션](https://www.notion.so/hongik-b612/Attendance-8b1a97e8382f457b998bbe0d1e517dfd?pvs=4)에서 확인하실 수 있습니다.
+
+**주의사항**: PR이 거부되었을 경우 출석으로 인정되지 않습니다. 즉 PR 거부당하고서 다시 제출하지 않으면 결석입니다.
+
+5번 결석 시 알고리즘 스터디에서 퇴출됩니다.
+
+인정 결석의 경우 3번까지 가능합니다. 하지만 타당한 사유가 있을 경우 횟수는 유연하게 조정될 수 있습니다.
+
+git을 사용하지 않고 노션에 작성하는 경우면 저한테 꼭 말해주세요. 제가 확인 못하면 출석으로 인정되지 않을 수 있습니다.
+
+PR 재제출 확인은 매주 목요일 날 확인합니다. PR 재제출의 경우 꼭 저에게 말해주세요.
+
+다시 한 번 말하지만, 말을 안 하면, 제가 운좋게 확인해서 머지를 하는 경우도 있지만, 제가 확인을 못 할 경우 책임은 각자에게 있습니다. 당연한거죠?
+
+**우수 포상**: 스터디를 독려하기 위해, 추후 출석률, 제출물의 퀄리티 등을 고려해 우수 포상을 선정하여 줍니다. B612 회비에서 지원하겠습니다. *(추후 변경 가능)*
