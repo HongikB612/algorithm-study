@@ -16,7 +16,7 @@ std::vector<int> primeFactorization(int N) {
   }
 
   if (N > 1) {
-    factors.push_back(N);
+    factors.emplace_back(N);
   }
 
   return std::move(factors);
