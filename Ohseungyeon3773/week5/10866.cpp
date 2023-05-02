@@ -1,54 +1,87 @@
 //백준 10866 덱 구현문제(연습문제)
-
-
-#include <bits/stdc++.h>
+#include <iostream>
+#include <string>
+ 
 using namespace std;
-
-int main(void) {
-  ios::sync_with_stdio(0);
-  cin.tie(0);
-
-  deque<int> DQ;
-  int n;
-  cin >> n;
-  while (n--) {
-    string q;
-    cin >> q;
-    if (q == "push_back") {
-      int val;
-      cin >> val;
-      DQ.push_back(val);
+ 
+const int MX = 1000000;
+int deque_arr[2 * MX + 1];
+int head = MX, tail = MX;
+ 
+int empty(int dat[]) {
+    if (head == tail) return 1; // 덱이 비어 있는 경우
+    else return 0; // 덱이 비어 있지 않은 경우
+}
+ 
+void push_front(int deque_arr[], int data) {
+    deque_arr[--head] = data;
+}
+ 
+void push_back(int deque_arr[], int data) {
+    deque_arr[tail++] = data;
+}
+ 
+int pop_front(int deque_arr[]) {
+    if (empty(deque_arr)) return -1;
+    return deque_arr[head++];
+}
+ 
+int pop_back(int deque_arr[]) {
+    if (empty(deque_arr)) return -1;
+    return deque_arr[--tail];
+}
+ 
+int size(int deque_arr[]) {
+    return tail - head;
+}
+ 
+int front(int deque_arr[]) {
+    if (empty(deque_arr)) return - 1;
+    return deque_arr[head];
+}
+ 
+int back(int deque_arr[]) {
+    if (empty(deque_arr)) return -1;
+    return deque_arr[tail - 1];
+}
+ 
+int main() {
+    int n;
+    cin >> n;
+    
+    string command;
+    int command_num;
+ 
+    for (int i = 0; i < n; i++) {
+        cin >> command;
+ 
+        if (command == "push_front") {
+            cin >> command_num;
+            push_front(deque_arr, command_num);
+        }
+        else if (command == "push_back") {
+            cin >> command_num;
+            push_back(deque_arr, command_num);
+        }
+        else if (command == "pop_front") {
+            cout << pop_front(deque_arr) << endl;
+        }
+        else if (command == "pop_back") {
+            cout << pop_back(deque_arr) << endl;
+        }
+        else if (command == "size") {
+            cout << size(deque_arr) << endl;
+        }
+        else if (command == "empty") {
+            cout << empty(deque_arr) << endl;
+        }
+        else if (command == "front") {
+            cout << front(deque_arr) << endl;
+        }
+        else if (command == "back") {
+            cout << back(deque_arr) << endl;
+        }
     }
-    else if (q == "push_front") {
-      int val;
-      cin >> val;
-      DQ.push_front(val);
-    }
-    else if(q == "pop_front"){
-      if(DQ.empty()) cout << -1 << '\n';
-      else{
-        cout << DQ.front() << '\n';
-        DQ.pop_front();
-      }
-    }
-    else if(q == "pop_back"){
-      if(DQ.empty()) cout << -1 << '\n';
-      else{
-        cout << DQ.back() << '\n';
-        DQ.pop_back();
-      }
-    }
-    else if (q == "size")
-      cout << DQ.size() << '\n';
-    else if (q == "empty")
-      cout << DQ.empty() << '\n';
-    else if (q == "front") {
-      if(DQ.empty()) cout << -1 << '\n';
-      else cout << DQ.front() << '\n';
-    }
-    else { 
-      if(DQ.empty()) cout << -1 << '\n';
-      else cout << DQ.back() << '\n';
-    }
-  }
+    
+    return 0;
 }
