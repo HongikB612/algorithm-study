@@ -16,7 +16,7 @@ int main(void) {
     int t;
     cin >> t;
     int idx = find(DQ.begin(), DQ.end(), t) - DQ.begin(); // idx : t가 있는 위치
-    
+
     while (DQ.front() != t) {
       if (idx < DQ.size() - idx) { 
         DQ.push_back(DQ.front());
@@ -33,4 +33,3 @@ int main(void) {
 
   cout << ans;
 }
-
